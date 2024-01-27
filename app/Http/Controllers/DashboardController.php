@@ -13,6 +13,7 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
        // Get all Items in Dashboard Page

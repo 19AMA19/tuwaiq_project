@@ -14,6 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="/assets/css/style.css">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -24,23 +25,10 @@
     <div id="app">
         <nav class="navbar navbar-expand-lg bg-dark">
             <div class="container-fluid">
-              <a class="navbar-brand text-white" href="{{route('groups')}}">Dashboard Tuwaiq Academy</a>
+              <a class="navbar-brand text-white" href="{{route('groups')}}">أفضل الأسعار للمستلزمات المنزلية </a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-
-
-              <div class="collapse navbar-collapse text-white" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item text-white">
-                    <a class="nav-link active text-white" aria-current="page" href="{{route('groups')}}">Groups</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-white" href="{{route('items')}}">Items</a>
-                  </li>
-                  <i class="fa-regular fa-cart-shopping text-white">{{ Session::get('cartItems') }}</i>
-                </ul>
-              </div>
 
               <div>
                 @if(Auth::guest())
@@ -55,7 +43,7 @@
                 @else
                 <ul class="navbar-nav">
                     <li class="nav-item ">
-                    <a class="nav-link text-light" href="{{route('logout')}}">Logout</a>
+                    <a class="nav-link text-light" href="{{route('logout')}}">خروج</a>
                     </li>
                 </ul>
                 @endif

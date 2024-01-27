@@ -5,10 +5,12 @@
         @foreach ($data as $row)
         <div class="card col-md-3 m-3">
             <div class="card-body">
-                <img src="/assets/images/{{$row->Image}}" width="250px" height="250px" alt="" srcset="">
+                <img src="/assets/images/{{$row->Image}}" width="200px" height="200px" alt="" srcset="">
                 <h2>{{$row -> ItemName}}</h2>
                 <h1>{{$row -> ItemPrice}} SAR</h1>
-                <a href="{{route('AddToCart',['id'=>$row->id])}}" class="btn btn-success">Add To Cart</a>
+                <a href="{{route('AddToCart',['ItemName'=>$row->ItemName, 'ItemPrice'=>$row->ItemPrice, 'Image' => $row->Image]) }}" class="btn btn-success">إضافة الى السلة</a>
+                <a href="{{route('AddToFavorite',['ItemName'=>$row->ItemName, 'ItemPrice'=>$row->ItemPrice, 'Image' => $row->Image]) }}" class="btn btn-success">إضافة الى المفضلة</a>
+
             </div>
         </div>
         @if(session()->has('success'))

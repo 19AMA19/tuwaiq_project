@@ -8,7 +8,7 @@ use App\Models\Itemgroup;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Http;
-
+use PhpParser\Node\Expr\Cast\Double;
 
 class ItemController extends Controller
 {
@@ -33,7 +33,8 @@ class ItemController extends Controller
     public function AddNewGroup(Request $request){
         
         $data = Itemgroup::create([
-            'ItemGroupName' => $request -> ItemGroupName
+            'ItemGroupName' => $request -> ItemGroupName,
+            'ItemGroupImage' => $request -> ItemGroupImage
         ]);
         $data->save();
         return redirect()->back()->with('success', 'Added Successfully');
@@ -41,7 +42,6 @@ class ItemController extends Controller
 
     // Controller
     public function AddNewItem(Request $request){
-        
         $data = Item::create([
             'ItemName' => $request -> ItemName,
             'ItemPrice' => $request -> ItemPrice,
@@ -77,16 +77,68 @@ class ItemController extends Controller
         return view('showproducts', ['data' => $data]);
     }
 
-    public function AddToCart($id){
-        DB::table('cart')->insert(['iditem'=> $id]);
+
+
+    public function Checkout(){
+        $data = DB::table('cart')->get();
+        $total = DB::table('cart')->sum('ItemPrice');
+        if($total > 99){
+            $shipping = 0; 
+        } else {
+            $shipping = 27; 
+        }
+        $tax = $total * 0.15;
+        return view('checkout', ['data' => $data, 'total' => $total, 'shipping' => $shipping, 'tax' => $tax]);
+    }
+
+    public function AddToCart($ItemName, $ItemPrice, $Image){
+        DB::table('cart')->insert(['ItemName'=> $ItemName, 'ItemPrice' => $ItemPrice, 'Image' => $Image]);
         $conut = DB::table('cart')->get()->count();
         Session::put('cartItems', $conut);
         return redirect()->back()->with('success', 'Updated Successfully');
     }
 
-    public function Checkout(){
-        return view('checkout');
+    public function AddToFavorite($ItemName, $ItemPrice, $Image){
+        DB::table('favorite')->insert(['ItemName'=> $ItemName, 'ItemPrice' => $ItemPrice, 'Image'=>$Image]);
+        $conutFavorite = DB::table('favorite')->get()->count();
+        Session::put('conutFavorite', $conutFavorite);
+        return redirect()->back()->with('success', 'Updated Successfully');
     }
+
+    public function ConfirmOrder($Quantity, $TotalPrice, $CustomerId, $Status){
+        DB::table('invoice')->insert(['Quantity' => $Quantity, 'TotalPrice' => $TotalPrice, 'CustomerId' => $CustomerId, 'Status' => $Status]);
+        $conut = DB::table('invoice')->get()->count();
+        Session::put('invoice', $conut);
+
+        $data = DB::table('invoice')
+        ->where('CustomerId', auth()->user()->id)
+        ->get();
+
+        return view('profile', ['data' => $data]);
+    }
+
+
+    
+    
+    public function Favorite(){
+        $data = DB::table('favorite')->get();
+        return view('favorite', ['data' => $data]);
+    }
+    
+    // public function myInvoice(){
+    //     $data = DB::table('invoice')
+    //     ->where('CustomerId', auth()->user()->id)
+    //     ->get();
+
+    //     return view('profile', ['data' => $data]);
+    // }
+
+
+
+
+    // public function Checkout(){
+    //     return view('checkout');
+    // }
 
     // public function TestAPI(){
     //     $response = Http::get('https://jsonplaceholder.typicode.com/photos');

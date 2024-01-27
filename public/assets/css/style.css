@@ -1,10 +1,50 @@
-.gradient-custom {
-/* fallback for old browsers */
-background: #6a11cb;
 
-/* Chrome 10-25, Safari 5.1-6 */
-background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
-
-/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+*{
+    direction: rtl;
 }
+
+
+.linkDecoration{
+    text-decoration: none;
+}
+
+.nav-item-user{
+    padding-left: 14px;
+    margin: 0;
+}
+
+.gradient-custom {
+    /* fallback for old browsers */
+    background: #f6d365;
+    
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1))
+    }
+
+
+
+#item{
+        width: 70px;
+        height: 70px;
+        align-items: center;
+        text-align: center;
+        font-size: 14pt;
+        justify-content: center;
+        display: flex;
+        justify-content: center;
+        border-radius: 50%;
+    }
+
+    #qr{
+        width: 70px;
+        height: 70px;
+        align-items: center;
+        text-align: center;
+        font-size: 14pt;
+        justify-content: center;
+        display: flex;
+        justify-content: center;
+    }

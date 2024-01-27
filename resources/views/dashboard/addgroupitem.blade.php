@@ -10,15 +10,18 @@
             method="post">
             @csrf
             <div class="col-md-12 p-4">
-                <label for="group-name">Add New Group</label>
+                <label for="group-name">اسم المجموعة الجديدة</label>
                 <input class="form-control" id="group-name" name="ItemGroupName" type="text" required/>
+                <br>
+                <label for="group-name">إضافة الصورة</label>
+                <input class="form-control" id="group-name" name="ItemGroupImage" type="file" required/>
                 <br/>
             </div>
 
             <div class="col-md-12 pb-4 text-center">
                 <div class="col">
                     <button class="btn btn-primary col-md-6" type="submit">
-                        Add
+                        إضافة
                     </button>
                 </div>
             </div>

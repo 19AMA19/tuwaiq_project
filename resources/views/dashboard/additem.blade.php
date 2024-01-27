@@ -5,7 +5,7 @@
         <div class="col d-flex justify-content-center">
             <div class="card col-md-6">
                 <div class="card-body">
-                    <h1 class="text-center">Add New Item</h1>
+                    <h1 class="text-center">إضافة عنصر جديد</h1>
                     <form
                     class="col-md-12"
                     action="{{ route('addItem') }}"
@@ -13,9 +13,13 @@
                     @csrf
                     <div class="container p-4">
                         <input class="form-control col" name="ItemName" type="text" placeholder="Name" required/>
+                        <br>
                         <input class="form-control col" name="ItemPrice" type="text" placeholder="Price" required/>
+                        <br>
                         <input class="form-control col" name="Quantity" type="text" placeholder="Quantity" required/>
+                        <br>
                         <input class="form-control col" name="Color" type="text" placeholder="Color" required/>
+                        <br>
                         <input class="form-control col" name="ItemGroupId" type="text" placeholder="ItemGroupId" required/>
                         <br/>
                     </div>
@@ -71,7 +75,6 @@
                         <td>{{ $item->ItemName }}</td>
                         <td>{{ $item->Quantity }}</td>
                         <td>{{ $item->ItemGroupId }}</td>
-
                         <td>
                             <a href="" class="btn btn-primary btn-sm text-center">Edit</a>
                         </td>

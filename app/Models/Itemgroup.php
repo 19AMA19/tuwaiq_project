@@ -11,5 +11,6 @@ class Itemgroup extends Model
 
     protected $fillable = [
         'ItemGroupName',
+        'ItemGroupImage',
     ];
 }

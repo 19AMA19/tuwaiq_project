@@ -9,13 +9,6 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\ItemController::class, 'ShowAllGroup'])->name('welcome');
 
-
-
-// Route::get('/', function () {
-//     return view('welcome');
-// })->name('welcome');
-
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Navigate to pages
@@ -30,7 +23,6 @@ Route::post('/addItem', [ItemController::class, 'AddNewItem'])->name('addItem');
 
 // Delete Group Item
 Route::get('/deleteGroup/{id}', [ItemController::class, 'DeleteGroupItem'])->name('deleteGroup');
-
 
 // Edit Group Item
 Route::get('/editGroup/{id}', [ItemController::class, 'EditGroupItem'])->name('editGroup');
@@ -60,18 +52,23 @@ Route::get('logout', function () {
     return redirect('login');
 })->name('logout');
 
-
 Route::get('/getItemsByGroup/{id}', [ItemController::class, 'getItemsByGroup'])->name('getItemsByGroup');
-Route::get('/AddToCart/{id}', [ItemController::class, 'AddToCart'])->name('AddToCart');
+
+Route::get('/AddToCart/{ItemName}/{ItemPrice}/{Image}', [ItemController::class, 'AddToCart'])->name('AddToCart');
+Route::get('/AddToFavorite/{ItemName}/{ItemPrice}/{Image}', [ItemController::class, 'AddToFavorite'])->name('AddToFavorite');
+
+Route::get('/ConfirmOrder/{Quantity}/{TotalPrice}/{CustomerId}/{Status}', [ItemController::class, 'ConfirmOrder'])->name('ConfirmOrder');
 
 
 Route::get('/checkout', [ItemController::class, 'Checkout'])->name('checkout')->middleware('auth');
-
+Route::get('/favorite', [ItemController::class, 'Favorite'])->name('favorite')->middleware('auth');
 
 // Testing API
 Route::get('/TestAPI', [ItemController::class, 'TestAPI'])->name('TestAPI');
 
-
-
+// User Profile
+Route::get('/profile', function () {
+    return view('profile');
+})->name('profile');
 
 
